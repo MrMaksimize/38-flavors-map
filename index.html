@@ -22,20 +22,35 @@ attributes: [maps]
         // Set Up Clusters For Each Location:
         var clusters = {};
         for (var i in positions) {
+            var uniqueId = taglitMapper.getRandom(0, 999999999999999, true);
             var createdCluster = new L.MarkerClusterGroup({
                 disableClusteringAtZoom: 17, 
                 showCoverageOnHover: false,
                 iconCreateFunction: function(cluster) {
                     // @todo - grow the image on cluster hover.
+                    console.log(cluster);
+                    console.log(cluster._leaflet_id);
                     var allMarkers = cluster.getAllChildMarkers();
                     var randomMarkerPos = taglitMapper.getRandom(0, allMarkers.length - 1, true);
-                    var clusterHtml = '<img src="' + allMarkers[randomMarkerPos].photoUrlSq +'" width="75px" class="img-circle"></img>';
+                    var clusterHtml = '<img class="' + cluster._leaflet_id + ' img-circle" src="' + allMarkers[randomMarkerPos].photoUrlSq +'" width="75px"></img>';
                     return new L.DivIcon({ html: clusterHtml });
                 }
             });
-
             createdCluster.on('clustermouseover', function(a) {
-                //console.log(a);
+                console.log(a);
+                var id = a.layer._leaflet_id;
+                $('.' + id).animate({
+                    width: "100px",
+                    //opacity: 0.4,
+                });
+            });
+            createdCluster.on('clustermouseout', function(a) {
+                console.log(a);
+                var id = a.layer._leaflet_id;
+                $('.' + id).animate({
+                    width: "75px",
+                    //opacity: 0.4,
+                });
             });
             clusters[positions[i].machineName] = createdCluster;
         }
