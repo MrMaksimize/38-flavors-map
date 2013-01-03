@@ -17,11 +17,16 @@ var taglitMapper = {
     mapboxUrl: 'http://a.tiles.mapbox.com/v3/mrmaksimize.map-qn9b68nj.jsonp',
     flickKey: '5185b66b87a1345f857fc311b059f7a0',
     flickSecret: 'a2fa9fe8c981e97c',
-    flickURL: 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + '5185b66b87a1345f857fc311b059f7a0' + '&photoset_id=72157632386151212&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?',
+    photoSetId: '72157632386151212',
+    perPage: '500',
+    //flickURL: 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + '5185b66b87a1345f857fc311b059f7a0' + '&photoset_id=72157632386151212&per_page=500&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?',
     center: {
         lat: 31.23788291430615,
         lng: 35.09799757967768,
         zoom: 8,
+    },
+    getFlickURL: function(page) {
+        return 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + this.flickKey + '&photoset_id=' + this.photoSetId + '&page=' + page + '&per_page=' + this.perPage + '&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?';
     },
     getRandom: function(min, max, round) {
         var result = Math.random() * (max - min) + min;

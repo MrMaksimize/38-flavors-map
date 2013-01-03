@@ -26,9 +26,10 @@ attributes: [maps]
         var marker = a.layer;
         console.log(marker);
        });*/
-
+        console.log(taglitMapper);
+        var flickURL = taglitMapper.getFlickURL(1);
        $.ajax({
-            url: taglitMapper.flickURL,
+            url: flickURL,
             type: 'GET',
             dataType: 'jsonp',
             error: function(xhr, status, error) {
@@ -41,8 +42,6 @@ attributes: [maps]
                     var photo = flickResult.photoset.photo[i];
                     photo.dateTaken = new Date(photo.datetaken);
                     if (photo.longitude == 0 && photo.latitude == 0) {
-                        //photo.longitude = taglitMapper.getRandomPos(34.8277763202211, 35.2074947447867);
-                        //photo.latitude = taglitMapper.getRandomPos(31.6085619162994, 31.841622626583);
                         // Get position based on photo date.
                         photo.photoPos = taglitMapper.getLocationByDate(photo.dateTaken);
                         if (photo.photoPos) {
