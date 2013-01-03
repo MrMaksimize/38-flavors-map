@@ -31,8 +31,8 @@ attributes: [maps]
                     var allMarkers = cluster.getAllChildMarkers();
                     var randomMarkerPos = taglitMapper.getRandom(0, allMarkers.length - 1, true);
                     var clusterIconHtml = '<img class="cluster-' + cluster._leaflet_id + ' img-circle" src="' + allMarkers[randomMarkerPos].photoUrlSq +'" width="' + taglitMapper.clusterIconSize + 'px"></img>';
-                    return new L.DivIcon({
-                        html: clusterIconHtml,
+                    return new L.DivIcon({ 
+                        html: clusterIconHtml, 
                         className: 'cluster-div-icon',
                         iconSize: taglitMapper.clusterIconSize
                     });
@@ -103,7 +103,7 @@ attributes: [maps]
                         var popupHtml = "<div style='text-align:center'><a id='map-image' class='map-image' href='" + photo.url_o + "' data-date-taken='" + photo.datetaken + "' data-near='" + photo.photoMeta.name + "' onClick='taglitMapper.openModal(this); return false;'><img src='" + photo.url_t + "' style='width:150px'></img></a><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
                         var photoIconHtml = '<img class="photo-' + photo.id + ' img-circle" src="' + photo.url_sq +'" width="' + taglitMapper.markerIconSize + 'px"></img>';
                         var photoIcon = L.divIcon({
-                            className: 'photo-div-icon',
+                            className: 'photo-div-icon', 
                             html: photoIconHtml,
                             iconSize: taglitMapper.markerIconSize,
                         });
