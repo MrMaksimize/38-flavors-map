@@ -17,14 +17,15 @@ attributes: [maps]
         });
 
        // Set Up Cluster:
-       var markerCluster = new L.MarkerClusterGroup();
-       markerCluster.on('clusterclick', function (a) {
+       var markerCluster = new L.MarkerClusterGroup({ disableClusteringAtZoom: 17 });
+       /*markerCluster.on('clusterclick', function (a) {
             a.layer.zoomToBounds();
-       });
-       markerCluster.on('click', function (a) {
+       });*/
+       /*markerCluster.on('click', function (a) {
         console.log('marker ' + a.layer);
-        console.log(a);
-       });
+        var marker = a.layer;
+        console.log(marker);
+       });*/
 
        $.ajax({
             url: taglitMapper.flickURL,
@@ -52,11 +53,14 @@ attributes: [maps]
                         
                     }
                     if (photo.latitude != 0 && photo.longitude != 0) {
-                        var marker = L.marker([photo.latitude, photo.longitude]);
+                        photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id;
+                        var popupHtml = "<div style='text-align:center'><img src='" + photo.url_m + "' style='width:150px'></img><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
+                        var marker = new L.marker([photo.latitude, photo.longitude]).bindPopup(popupHtml);
                         photos.push(marker);
                     }
                 }
                 markerCluster.addLayers(photos);
+                console.log(markerCluster);
                 taglitMapper.map.addLayer(markerCluster);
             }
         });

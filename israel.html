@@ -43,6 +43,7 @@ attributes: [maps]
         var flickKey = '5185b66b87a1345f857fc311b059f7a0';
         var flickSecret = 'a2fa9fe8c981e97c';
         var flickURL =  'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + flickKey + '&photoset_id=72157632247404667&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?';
+        var markerCluster = new L.MarkerClusterGroup({ disableClusteringAtZoom: 17 });
         $.ajax({
             url: flickURL,
             type: 'GET',
@@ -53,18 +54,22 @@ attributes: [maps]
             success: function(flickResult) {
                 for ( var i in flickResult.photoset.photo ) {
                     var photo = flickResult.photoset.photo[i];
-                    if (photo.longitude == 0) {
-                        photo.longitude = getRandomPos(34.8277763202211, 35.2074947447867);
+                    if (photo) {
+                        if (photo.longitude == 0) {
+                            photo.longitude = getRandomPos(34.8277763202211, 35.2074947447867);
+                        }
+                        if (photo.latitude == 0) {
+                            console.log('mod');
+                            photo.latitude = getRandomPos(31.6085619162994, 31.841622626583);
+                        }
+                        photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id
+                        var marker = L.marker([photo.latitude, photo.longitude]);//.addTo(map);
+                        var popupHtml = "<div style='text-align:center'><img src='" + photo.url_m + "' style='width:150px'></img><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
+                        marker.bindPopup('test');
+                        markerCluster.addLayer(marker);
                     }
-                    if (photo.latitude == 0) {
-                        console.log('mod');
-                        photo.latitude = getRandomPos(31.6085619162994, 31.841622626583);
-                    }
-                    photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id
-                    var marker = L.marker([photo.latitude, photo.longitude]).addTo(map);
-                    var popupHtml = "<div style='text-align:center'><img src='" + photo.url_m + "' style='width:150px'></img><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
-                    marker.bindPopup(popupHtml);
                 }
+                map.addLayer(markerCluster);
             }
         });
         for (i in locations) {
