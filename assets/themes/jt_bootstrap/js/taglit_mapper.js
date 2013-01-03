@@ -34,6 +34,15 @@ var taglitMapper = {
     flickSecret: 'a2fa9fe8c981e97c',
     photoSetId: '72157632386151212',
     perPage: '500',
+    clusterIconSize: 75,
+    clusterIconSizeLarge: 100,
+    clusterIconOpacityOn: 1,
+    clusterIconOpacityOff: 0.7,
+    markerIconSize: 30,
+    markerIconSizeLarge: 50,
+    markerIconOpacityOn: 1,
+    markerIconOpacityOff: 0.7,
+
     //flickURL: 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + '5185b66b87a1345f857fc311b059f7a0' + '&photoset_id=72157632386151212&per_page=500&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?',
     center: {
         lat: 31.23788291430615,
@@ -89,5 +98,17 @@ var taglitMapper = {
                 return photoMeta;
             }
         }
+    },
+
+    openModal: function(callingElement) {
+        console.log(callingElement);
+        var datetaken = $(callingElement).data('date-taken');
+        var locNear = $(callingElement).data('near');
+        console.log(datetaken);
+        //$('#image-modal .modal-label').html($(callingElement.data('date-taken')));
+        $('#image-modal #modal-label').html('Near: ' + locNear);
+        $('#image-modal .modal-body').html("<img src='" + $(callingElement).attr('href') + "'>");
+        $('#image-modal .modal-footer').html(datetaken);
+        $('#image-modal').modal('toggle');
     }
 };
