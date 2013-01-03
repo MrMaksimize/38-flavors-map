@@ -3,6 +3,10 @@ body{
     padding-top:80px;
     color:#CCCCCC;
 }
+.leaflet-div-icon {
+    background:transparent !important;
+    border:0px !important;
+}
 /* Large desktop */
 @media (min-width: 1200px) {}
  
@@ -20,4 +24,3 @@ body{
 @media (max-width: 480px) {
      body{padding-top:0px;}
 }
-    

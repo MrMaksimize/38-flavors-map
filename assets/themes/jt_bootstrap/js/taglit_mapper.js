@@ -1,6 +1,7 @@
 var positions = {
     jerusalem: {
         name: 'Jerusalem',
+        machineName: 'jerusalem',
         polygon: new L.Polygon([
             [31.80656373188476, 35.20515678762774],
             [31.74254321506333, 35.15430889260418],
@@ -10,6 +11,20 @@ var positions = {
         ]),
         dateStart: new Date("December 18, 2012 11:13:00"),
         dateEnd: new Date("December 20, 2012 11:13:00"),
+    },
+    haifa: {
+        name: 'Haifa',
+        machineName: 'haifa',
+        polygon: new L.Polygon([
+            [32.7704724139624, 35.05054365559191],
+            [32.81851770797227, 35.02096112107873],
+            [32.83827756179425, 34.97950218671765], 
+            [32.83548656522435, 34.95063739808254],
+            [32.75472002694073, 34.94863778080404], 
+            [32.7704724139624, 35.05054365559191],
+        ]),
+        dateStart: new Date("December 20, 2012 11:15:00"),
+        dateEnd: new Date("December 25, 2012 11:15:00"),
     }
 }
 
@@ -26,7 +41,7 @@ var taglitMapper = {
         zoom: 8,
     },
     getFlickURL: function(page) {
-        return 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + this.flickKey + '&photoset_id=' + this.photoSetId + '&page=' + page + '&per_page=' + this.perPage + '&extras=geo,date_taken,path_alias,url_s,url_m,url_o&format=json&jsoncallback=?';
+        return 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + this.flickKey + '&photoset_id=' + this.photoSetId + '&page=' + page + '&per_page=' + this.perPage + '&extras=geo,date_taken,path_alias,url_sq,url_t,url_s,url_m,url_o&format=json&jsoncallback=?';
     },
     getRandom: function(min, max, round) {
         var result = Math.random() * (max - min) + min;
@@ -66,11 +81,12 @@ var taglitMapper = {
             }
         });
     },
-    getLocationByDate: function(dateTaken) {
+    getMetaByDate: function(dateTaken) {
         for ( var p in positions ) {
             if (positions[p].dateStart < dateTaken && positions[p].dateEnd > dateTaken) {
-                var photoPos = this.getRandomPosPolygon(positions[p].polygon);
-                return photoPos;
+                var photoMeta = positions[p];
+                photoMeta.photoPos = this.getRandomPosPolygon(positions[p].polygon);
+                return photoMeta;
             }
         }
     }

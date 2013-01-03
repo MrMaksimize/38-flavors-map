@@ -7,8 +7,6 @@ attributes: [maps]
 <script type='text/javascript'>
 
     $(document).ready(function() {
-       console.log(taglitMapper);
-       console.log(positions);
        taglitMapper.map = new L.Map('map-div');
        wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
             var leafConnector = new wax.leaf.connector(tilejson);
@@ -16,8 +14,26 @@ attributes: [maps]
             taglitMapper.map.setView(new L.LatLng(taglitMapper.center.lat, taglitMapper.center.lng), taglitMapper.center.zoom);
         });
 
-       // Set Up Cluster:
-       var markerCluster = new L.MarkerClusterGroup({ disableClusteringAtZoom: 17 });
+        // Set Up Clusters For Each Location:
+        var clusters = {};
+        for (var i in positions) {
+            var createdCluster = new L.MarkerClusterGroup({
+                disableClusteringAtZoom: 17, 
+                showCoverageOnHover: false,
+                iconCreateFunction: function(cluster) {
+                    // @todo - grow the image on cluster hover.
+                    var allMarkers = cluster.getAllChildMarkers();
+                    var randomMarkerPos = taglitMapper.getRandom(0, allMarkers.length - 1, true);
+                    var clusterHtml = '<img src="' + allMarkers[randomMarkerPos].photoUrlSq +'" width="75px" class="img-circle"></img>';
+                    return new L.DivIcon({ html: clusterHtml });
+                }
+            });
+
+            createdCluster.on('clustermouseover', function(a) {
+                console.log(a);
+            });
+            clusters[positions[i].machineName] = createdCluster;
+        }
        /*markerCluster.on('clusterclick', function (a) {
             a.layer.zoomToBounds();
        });*/
@@ -37,30 +53,37 @@ attributes: [maps]
             },
             success: function(flickResult) {
                 console.log(flickResult);
-                var photos = [];
+                var photos = {};
                 for ( var i = 0; i < flickResult.photoset.photo.length; i++ ) {
                     var photo = flickResult.photoset.photo[i];
                     photo.dateTaken = new Date(photo.datetaken);
                     if (photo.longitude == 0 && photo.latitude == 0) {
                         // Get position based on photo date.
-                        photo.photoPos = taglitMapper.getLocationByDate(photo.dateTaken);
-                        if (photo.photoPos) {
-                            photo.latitude = photo.photoPos.lat;
-                            photo.longitude = photo.photoPos.lng;
-                            console.log(photo.latitude + ' ' + photo.longitude);
+                        photo.photoMeta = taglitMapper.getMetaByDate(photo.dateTaken);
+                        if (photo.photoMeta) {
+                            photo.latitude = photo.photoMeta.photoPos.lat;
+                            photo.longitude = photo.photoMeta.photoPos.lng;
                         }
                         
                     }
                     if (photo.latitude != 0 && photo.longitude != 0) {
                         photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id;
-                        var popupHtml = "<div style='text-align:center'><img src='" + photo.url_m + "' style='width:150px'></img><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
+                        var popupHtml = "<div style='text-align:center'><a id='map-image' class='map-image' href='" + photo.url_o + "'><img src='" + photo.url_t + "' style='width:150px'></img></a><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
+                        
                         var marker = new L.marker([photo.latitude, photo.longitude]).bindPopup(popupHtml);
-                        photos.push(marker);
+                        marker.photoUrlSq = photo.url_sq;
+                        if (!photos[photo.photoMeta.machineName]) {
+                            photos[photo.photoMeta.machineName] = [];
+                        }
+                        photos[photo.photoMeta.machineName].push(marker);
                     }
                 }
-                markerCluster.addLayers(photos);
-                console.log(markerCluster);
-                taglitMapper.map.addLayer(markerCluster);
+                for (var i in clusters) {
+                    var cluster = clusters[i];
+                    var clusterPhotos = photos[i];
+                    cluster.addLayers(clusterPhotos);
+                    taglitMapper.map.addLayer(cluster);
+                }
             }
         });
     });
@@ -70,5 +93,7 @@ attributes: [maps]
 
 
 <div id="map-div" style="width:100%; height:700px"></div>
+
+
 
 
