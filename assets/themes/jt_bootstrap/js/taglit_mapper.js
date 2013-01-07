@@ -42,8 +42,8 @@ var positionsGeoJSON = {
                 "machineName": "jfk_airport",
                 "dates": [
                     {
-                        "dateStart": new Date("December 16, 2012 14:00:00"),
-                        "dateEnd": new Date("December 16, 2012 23:15:00"),
+                        "dateStart": new Date("December 16, 2012 14:00:00 EST"),
+                        "dateEnd": new Date("December 16, 2012 23:15:00 EST"),
                     }
                 ]
             }
@@ -106,8 +106,8 @@ var positionsGeoJSON = {
                 "machineName": "old_jaffa_city",
                 "dates": [
                     {
-                        "dateStart": new Date("December 18, 2012 10:00:00"),
-                        "dateEnd": new Date("December 18, 2012 15:00:00"),
+                        "dateStart": new Date("December 18, 2012 10:00:00 CET"),
+                        "dateEnd": new Date("December 18, 2012 15:00:00 CET"),
                     }
                 ]
             }
@@ -132,8 +132,8 @@ var positionsGeoJSON = {
                 "machineName": "tel_aviv_university",
                 "dates": [
                     {
-                        "dateStart": new Date("December 18, 2012 18:00:00"),
-                        "dateEnd": new Date("December 18, 2012 23:00:00"),
+                        "dateStart": new Date("December 18, 2012 18:00:00 IST"),
+                        "dateEnd": new Date("December 18, 2012 23:00:00 IST"),
                     }
                 ]
             }
@@ -157,12 +157,12 @@ var positionsGeoJSON = {
                 "machineName": "kibbutz_tsuba",
                 "dates": [
                     {
-                        "dateStart": new Date("December 18, 2012 23:00:00"),
-                        "dateEnd": new Date("December 19, 2012 07:00:00"),
+                        "dateStart": new Date("December 18, 2012 23:00:00 IST"),
+                        "dateEnd": new Date("December 19, 2012 07:00:00 IST"),
                     },
                     {
-                        "dateStart": new Date("December 19, 2012 23:00:00"),
-                        "dateEnd": new Date("December 20, 2012 07:00:00"),
+                        "dateStart": new Date("December 19, 2012 23:00:00 IST"),
+                        "dateEnd": new Date("December 20, 2012 07:00:00 IST"),
                     }
                 ]
             }
@@ -186,8 +186,8 @@ var positionsGeoJSON = {
                 "machineName": "yad_vashem",
                 "dates": [
                     {
-                        "dateStart": new Date("December 19, 2012 07:00:00"),
-                        "dateEnd": new Date("December 19, 2012 14:00:00"),
+                        "dateStart": new Date("December 19, 2012 07:00:00 IST"),
+                        "dateEnd": new Date("December 19, 2012 14:00:00 IST"),
                     }
                 ]
             }
@@ -211,8 +211,8 @@ var positionsGeoJSON = {
                 "machineName": "mount_herzl",
                 "dates": [
                     {
-                        "dateStart": new Date("December 19, 2012 14:00:00"),
-                        "dateEnd": new Date("December 19, 2012 19:00:00"),
+                        "dateStart": new Date("December 19, 2012 14:00:00 IST"),
+                        "dateEnd": new Date("December 19, 2012 19:00:00 IST"),
                     }
                 ]
             }
@@ -236,8 +236,8 @@ var positionsGeoJSON = {
                 "machineName": "mehane_yehuda_market",
                 "dates": [
                     {
-                        "dateStart": new Date("December 19, 2012 19:00:00"),
-                        "dateEnd": new Date("December 19, 2012 23:15:00"),
+                        "dateStart": new Date("December 19, 2012 19:00:00 IST"),
+                        "dateEnd": new Date("December 19, 2012 23:15:00 IST"),
                     }
                 ]
             }
@@ -261,8 +261,8 @@ var positionsGeoJSON = {
                 "machineName": "avshalom_cave_and_dig",
                 "dates": [
                     {
-                        "dateStart": new Date("December 20, 2012 23:00:00"),
-                        "dateEnd": new Date("December 20, 2012 13:00:00"),
+                        "dateStart": new Date("December 20, 2012 23:00:00 IST"),
+                        "dateEnd": new Date("December 20, 2012 13:00:00 IST"),
                     }
                 ]
             }
@@ -286,8 +286,8 @@ var positionsGeoJSON = {
                 "machineName": "bedouin_tents",
                 "dates": [
                     {
-                        "dateStart": new Date("December 20, 2012 13:00:00"),
-                        "dateEnd": new Date("December 21, 2012 05:00:00"),
+                        "dateStart": new Date("December 20, 2012 13:00:00 IST"),
+                        "dateEnd": new Date("December 21, 2012 05:00:00 IST"),
                     }
                 ]
             }
@@ -311,8 +311,8 @@ var positionsGeoJSON = {
                 "machineName": "mount_masada",
                 "dates": [
                     {
-                        "dateStart": new Date("December 21, 2012 05:00:00"),
-                        "dateEnd": new Date("December 21, 2012 12:00:00"),
+                        "dateStart": new Date("December 21, 2012 05:00:00 IST"),
+                        "dateEnd": new Date("December 21, 2012 12:00:00 IST"),
                     }
                 ]
             }
@@ -337,8 +337,8 @@ var positionsGeoJSON = {
                 "machineName": "dead_sea",
                 "dates": [
                     {
-                        "dateStart": new Date("December 18, 2012 12:00:00"),
-                        "dateEnd": new Date("December 18, 2012 17:00:00"),
+                        "dateStart": new Date("December 18, 2012 12:00:00 IST"),
+                        "dateEnd": new Date("December 18, 2012 17:00:00 IST"),
                     }
                 ]
             }
@@ -362,12 +362,12 @@ var positionsGeoJSON = {
                 "machineName": "blue_bay_hotel",
                 "dates": [
                     {
-                        "dateStart": new Date("December 21, 2012 17:00:00"),
-                        "dateEnd": new Date("December 22, 2012 18:00:00"),
+                        "dateStart": new Date("December 21, 2012 17:00:00 IST"),
+                        "dateEnd": new Date("December 22, 2012 18:00:00 IST"),
                     },
                     {
-                        "dateStart": new Date("December 25, 2012 17:00:00"),
-                        "dateEnd": new Date("December 26, 2012 11:00:00"),
+                        "dateStart": new Date("December 25, 2012 17:00:00 IST"),
+                        "dateEnd": new Date("December 26, 2012 11:00:00 IST"),
                     }
                 ]
             }
@@ -391,8 +391,8 @@ var positionsGeoJSON = {
                 "machineName": "agamon_hula",
                 "dates": [
                     {
-                        "dateStart": new Date("December 23, 2012 10:00:00"),
-                        "dateEnd": new Date("December 23, 2012 15:00:00"),
+                        "dateStart": new Date("December 23, 2012 10:00:00 IST"),
+                        "dateEnd": new Date("December 23, 2012 15:00:00 IST"),
                     }
                 ]
             }
@@ -416,8 +416,8 @@ var positionsGeoJSON = {
                 "machineName": "kibbutz_ginosaur",
                 "dates": [
                     {
-                        "dateStart": new Date("December 23, 2012 15:00:00"),
-                        "dateEnd": new Date("December 24, 2012 10:00:00"),
+                        "dateStart": new Date("December 23, 2012 15:00:00 IST"),
+                        "dateEnd": new Date("December 24, 2012 10:00:00 IST"),
                     }
                 ]
             }
@@ -441,8 +441,8 @@ var positionsGeoJSON = {
                 "machineName": "haifa",
                 "dates": [
                     {
-                        "dateStart": new Date("December 25, 2012 10:00:00"),
-                        "dateEnd": new Date("December 25, 2012 17:00:00"),
+                        "dateStart": new Date("December 25, 2012 10:00:00 IST"),
+                        "dateEnd": new Date("December 25, 2012 17:00:00 IST"),
                     }
                 ]
             }
@@ -466,8 +466,8 @@ var positionsGeoJSON = {
                 "machineName": "old_city_jerusalem",
                 "dates": [
                     {
-                        "dateStart": new Date("December 26, 2012 11:00:00"),
-                        "dateEnd": new Date("December 27, 2012 01:00:00"),
+                        "dateStart": new Date("December 26, 2012 11:00:00 IST"),
+                        "dateEnd": new Date("December 27, 2012 01:00:00 IST"),
                     }
                 ]
             }
@@ -524,7 +524,6 @@ var taglitMapper = {
 
     reverseCoordinateSet: function(coordSet) {
         var newCoordSet = [];
-        //console.log(positionsGeoJSON.features[1].geometry);
         for (var g = 0; g < coordSet.length; g++) {
             var coordinatePoint = coordSet[g];
             var newCoordinatePoint = [coordinatePoint[1], coordinatePoint[0]];
@@ -541,7 +540,6 @@ var taglitMapper = {
 
     geocode: function(location) {
         var url = 'http://a.tiles.mapbox.com/v3/mrmaksimize.map-qn9b68nj/geocode/' + location +'.jsonp';
-        console.log(url);
         $.ajax({
             url: url,
             type: 'GET',
@@ -565,9 +563,13 @@ var taglitMapper = {
         for ( var p = 0; p < this.geoJSON.features.length; p++ ) {
             for ( var d in this.geoJSON.features[p].properties.dates) {
                 if (this.geoJSON.features[p].properties.dates[d]) {
+                    //@todo fix this.
                     var dateStart = this.geoJSON.features[p].properties.dates[d].dateStart;
+                    var dateStartUTC = Date.UTC(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate(), dateStart.getHours(), dateStart.getMinutes(), dateStart.getSeconds()));
                     var dateEnd = this.geoJSON.features[p].properties.dates[d].dateEnd;
-                    if (dateStart < dateTaken && dateEnd > dateTaken) {
+                    var dateEndUTC = Date.UTC(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), dateEnd.getMinutes(), dateEnd.getSeconds()));
+                    var dateTakenUTC = Date.UTC(dateTaken.getFullYear(), dateTaken.getMonth(), dateTaken.getDate(), dateTaken.getHours(), dateTaken.getMinutes(), dateTaken.getSeconds()));
+                    if (dateStartUTC < dateTakenUTC && dateEndUTC > dateTakenUTC) {
                         console.log('match');
                         var photoMeta = this.geoJSON.features[p];
                         photoMeta.properties.photoPos = this.getRandomPosPolygon(photoMeta.properties.polygon);
@@ -633,7 +635,6 @@ var taglitMapper = {
                 }
             });
             createdCluster.on('clustermouseover', function(a) {
-                console.log(a);
                 var id = 'cluster-' + a.layer._leaflet_id;
                 $('.' + id).animate({
                     width: taglitMapper.clusterIconSizeLarge + "px",
@@ -641,7 +642,6 @@ var taglitMapper = {
                 });
             });
             createdCluster.on('clustermouseout', function(a) {
-                console.log(a);
                 var id = 'cluster-' + a.layer._leaflet_id;
                 $('.' + id).animate({
                     width: taglitMapper.clusterIconSize + "px",
@@ -649,7 +649,6 @@ var taglitMapper = {
                 });
             });
             createdCluster.on('mouseover', function(a) {
-                console.log(a);
                 var id = 'photo-' + a.layer.photo_id;
                 $('.' + id).animate({
                     width: taglitMapper.markerIconSizeLarge + "px",
@@ -657,7 +656,6 @@ var taglitMapper = {
                 });
             });
             createdCluster.on('mouseout', function(a) {
-                console.log(a);
                 var id = 'photo-' + a.layer.photo_id;
                 $('.' + id).animate({
                     width: taglitMapper.markerIconSize + "px",
@@ -668,7 +666,7 @@ var taglitMapper = {
     },
 
     mapFlickResult: function(flickResult) {
-        //console.log(flickResult);
+        console.log(flickResult);
         var photoMarkers = {};
         for ( var i = 0; i < flickResult.photoset.photo.length; i++ ) {
             var photo = this.prepPhoto(flickResult.photoset.photo[i]);
@@ -688,7 +686,7 @@ var taglitMapper = {
     },
 
     prepPhoto: function(photo) {
-        photo.dateTaken = new Date(photo.datetaken);
+        photo.dateTaken = new Date(photo.datetaken + " CST");
         photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id;
         // Get position based on photo date.
         photo.photoMeta = this.getMetaByDate(photo.dateTaken);
