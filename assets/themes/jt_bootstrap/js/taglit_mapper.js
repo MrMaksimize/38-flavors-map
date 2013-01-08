@@ -515,8 +515,8 @@ var taglitMapper = {
     getRandomPosPolygon: function(polygon) {
         var bounds = polygon.getBounds();
         var center = bounds.getCenter();
-        var latDeviator = this.getRandom(0, 0.049999999, false);
-        var lngDeviator = this.getRandom(0, 0.049999999, false);
+        var latDeviator = this.getRandom(0, 0.009999999, false);
+        var lngDeviator = this.getRandom(0, 0.009999999, false);
         center.lat = this.getRandom(center.lat, center.lat + latDeviator);
         center.lng = this.getRandom(center.lng, center.lng + lngDeviator);
         return center;
@@ -684,8 +684,6 @@ var taglitMapper = {
 
     getPhotoMarker: function(photo) {
         var marker = new L.marker([photo.latitude, photo.longitude]);
-        console.log(photo);
-        console.log(photo.photoMeta.properties);
         photo.photoURL = 'http://www.flickr.com/photos/' + photo.pathalias + '/' + photo.id;
         if (photo.photoMeta) {
             var popupHtml = "<div style='text-align:center'><a id='map-image' class='map-image' href='" + photo.url_o + "' data-date-taken='" + photo.datetaken + "' data-near='" + photo.photoMeta.properties.name + "' onClick='taglitMapper.openModal(this); return false;'><img src='" + photo.url_s + "' style='width:180px'></img></a><br/><a href='" + photo.photoURL + "'>" + photo.datetaken + "</a></div>";
@@ -707,23 +705,23 @@ var taglitMapper = {
 
     mapFlickResult: function(flickResult) {
         console.log(flickResult);
-        var photoMarkers = {};
+        this.photoMarkers = {};
         for ( var i = 0; i < flickResult.photoset.photo.length; i++ ) {
             var photo = this.prepPhoto(flickResult.photoset.photo[i]);
             if (photo && photo.photoMeta) {
                 var photoMarker = this.getPhotoMarker(photo);
                 if (photoMarker != null) {
-                    if (!photoMarkers[photo.photoMeta.properties.machineName]) {
-                        photoMarkers[photo.photoMeta.properties.machineName] = [];
+                    if (!this.photoMarkers[photo.photoMeta.properties.machineName]) {
+                        this.photoMarkers[photo.photoMeta.properties.machineName] = [];
                     }
-                    photoMarkers[photo.photoMeta.properties.machineName].push(photoMarker);
+                    this.photoMarkers[photo.photoMeta.properties.machineName].push(photoMarker);
                 }
                 
             }
         }
-        for ( var pm in photoMarkers ) {
-            if (photoMarkers[pm]) {
-                this.cluster.addLayers(photoMarkers[pm]);
+        for ( var pm in this.photoMarkers ) {
+            if (this.photoMarkers[pm]) {
+                this.cluster.addLayers(this.photoMarkers[pm]);
             }
         }
     },
@@ -763,9 +761,10 @@ var taglitMapper = {
 
     boot: function(mapdiv) {
         this.map = new L.Map(mapdiv);
-        wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
-            var leafConnector = new wax.leaf.connector(tilejson);
-            taglitMapper.map.addLayer(leafConnector);
+        //wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
+            //var leafConnector = new wax.leaf.connector(tilejson);
+            //taglitMapper.map.addLayer(leafConnector);
+            taglitMapper.map.addLayer(new L.StamenTileLayer("watercolor"));
             taglitMapper.map.setView(new L.LatLng(taglitMapper.center.lat, taglitMapper.center.lng), taglitMapper.center.zoom);
             taglitMapper.cluster = taglitMapper.makeCluster();
             taglitMapper.map.addLayer(taglitMapper.cluster);
@@ -798,7 +797,7 @@ var taglitMapper = {
             };
 
             L.control.layers(baseMaps, overlays).addTo(taglitMapper.map);
-        });
+        //});
         
 
 
