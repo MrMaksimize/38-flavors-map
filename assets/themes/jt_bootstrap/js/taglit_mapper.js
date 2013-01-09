@@ -764,7 +764,8 @@ var taglitMapper = {
         //wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
             //var leafConnector = new wax.leaf.connector(tilejson);
             //taglitMapper.map.addLayer(leafConnector);
-            taglitMapper.map.addLayer(new L.StamenTileLayer("watercolor"));
+            taglitMapper.baseLayer = new L.StamenTileLayer("watercolor");
+            taglitMapper.map.addLayer(taglitMapper.baseLayer);
             taglitMapper.map.setView(new L.LatLng(taglitMapper.center.lat, taglitMapper.center.lng), taglitMapper.center.zoom);
             taglitMapper.cluster = taglitMapper.makeCluster();
             taglitMapper.map.addLayer(taglitMapper.cluster);
@@ -788,7 +789,7 @@ var taglitMapper = {
             }).addTo(taglitMapper.map);
 
             var baseMaps = {
-                "Base Map": leafConnector,
+                "Base Map": taglitMapper.baseLayer,
             };
             var overlays = {
                 "Photos": taglitMapper.cluster,
