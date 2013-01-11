@@ -761,10 +761,8 @@ var taglitMapper = {
 
     boot: function(mapdiv) {
         this.map = new L.Map(mapdiv);
-        //wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
-            //var leafConnector = new wax.leaf.connector(tilejson);
-            //taglitMapper.map.addLayer(leafConnector);
-            taglitMapper.baseLayer = new L.StamenTileLayer("watercolor");
+        wax.tilejson(taglitMapper.mapboxUrl, function(tilejson) {
+            taglitMapper.baseLayer = new wax.leaf.connector(tilejson);
             taglitMapper.map.addLayer(taglitMapper.baseLayer);
             taglitMapper.map.setView(new L.LatLng(taglitMapper.center.lat, taglitMapper.center.lng), taglitMapper.center.zoom);
             taglitMapper.cluster = taglitMapper.makeCluster();
@@ -798,12 +796,11 @@ var taglitMapper = {
             };
 
             L.control.layers(baseMaps, overlays).addTo(taglitMapper.map);
-        //});
-        
-
-
-        
-        
+            taglitMapper.playControl = new playControl(taglitMapper.map, positionsGeoJSON, {position: "topleft"});
+            console.log(taglitMapper.playControl);
+            taglitMapper.map.addControl(taglitMapper.playControl);
+            console.log(taglitMapper.map);
+        });
 
     }
 };
